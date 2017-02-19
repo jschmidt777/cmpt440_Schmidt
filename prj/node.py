@@ -2,7 +2,6 @@ class Node:  # class, if, loops (everything is now underneath this)
     def __init__(self,
                  acceptedState=False,
                  nodeId=0):
-
         self.acceptedState = acceptedState
         self.nodeId = nodeId
 
