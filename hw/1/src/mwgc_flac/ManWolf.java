@@ -10,13 +10,30 @@
  * and reports whether or not it represents a solution to the man-wolf-goat-cabbage problem
  * in Chapter 2 of the textbook.
  */
-package mwgc_flac;
-
-
+package mwgc_flac; //The package encapsulating the two classes ManWolf and driverDFA
+import java.io.*; 
+//TODO: Block comments
 public class ManWolf {
-
+//reused from the book on page 40
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	  throws IOException {
+	    driverDFA d = new driverDFA; //The dfa created in the driverDFA class
+	    
+	    BufferedReader in = //Standard input for reading the command line
+	      new BufferedReader (new InputStreamReader(System.in));
+	    
+	    //Read and echo lines until EOF
+	    
+	    String s = in.readLine();
+	    while (s!=null){
+	      m.reset();
+	      m.process(s);
+	      if (m.accepted()){
+	        System.out.println(s);
+	      }
+	      s = in.readLine();
+	    }
+	  }
 
 	}
 
