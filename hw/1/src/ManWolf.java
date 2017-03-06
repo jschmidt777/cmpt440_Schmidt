@@ -31,7 +31,7 @@ public class ManWolf {
   private int state = 0; // initialize at zero; this is the start of the dfa
 
   private static int[][] delta =
-  /* G W C N */
+  /*  G    W    C    N */
   { { q1, q10, q10, q10 },// q0
       { q0, q10, q10, q2 },// q1
       { q10, q3, q4, q1 },// q2
@@ -56,9 +56,9 @@ public class ManWolf {
     for (int i = 0; i < in.length(); i++) {
       char c = in.charAt(i);
       try {
-        state = delta[state][c - 'a']; // I think this should work
+        state = delta[state][c-'a']; 
       } catch (ArrayIndexOutOfBoundsException ex) {
-        state = delta[state][c]; // possible solution
+        state = q10; //I think this should stay this way but I need to check how to properly to the subtraction portion above
       }
     }
   }

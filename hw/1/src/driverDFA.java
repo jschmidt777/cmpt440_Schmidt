@@ -16,7 +16,8 @@ import java.io.*;
 public class driverDFA {
   public static void main(String[] args) throws IOException {
     ManWolf d = new ManWolf(); // The dfa created in the ManWolf class
-
+    System.out.println("Please enter a combination of the letters "
+                        + "'wgcn' to see if they make a solution.");
     BufferedReader in = // Standard input for reading the command line
     new BufferedReader(new InputStreamReader(System.in));
 
@@ -27,7 +28,10 @@ public class driverDFA {
       d.reset();
       d.process(s);
       if (d.accepted()) {
+        System.out.println("This is a solution.");
         System.out.println(s);
+      }else{
+        System.out.println("This is not a solution.");
       }
       s = in.readLine();
     }
