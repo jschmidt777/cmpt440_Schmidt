@@ -1,6 +1,10 @@
 /**
- * file: ManWolf.java author: Joseph Schmidt course: CMPT 440 assignment:
- * Homework 1 due date: March 20, 2017 version: 1.0
+ * file: ManWolf.java 
+ * author: Joseph Schmidt 
+ * course: CMPT 440 
+ * assignment: Homework 1 
+ * due date: March 20, 2017 
+ * version: 1.0
  * 
  * This file takes a string from the command line and reports whether or not it
  * represents a solution to the man-wolf-goat-cabbage problem in Chapter 2 of
@@ -55,8 +59,18 @@ public class ManWolf {
   public void process(String in) {
     for (int i = 0; i < in.length(); i++) {
       char c = in.charAt(i);
+      int index = 0; //This represents which letter we get and maps it to the 2D array
       try {
-        state = delta[state][c-'a']; 
+        if(c == 'g'){
+          index = 0;
+        }else if (c == 'w'){
+          index = 1;
+        }else if (c == 'c'){
+          index = 2;
+        }else if (c == 'n'){
+          index = 3;
+        }
+        state = delta[state][index]; 
       } catch (ArrayIndexOutOfBoundsException ex) {
         state = q10; //I think this should stay this way but I need to check how to properly to the subtraction portion above
       }
