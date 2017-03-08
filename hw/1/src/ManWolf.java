@@ -20,7 +20,7 @@ public class ManWolf {
    * Based on the DFA diagram on page 11 Need these states to account for the
    * possible inputs, plus an error state
    */
-  private static final int q0 = 0;
+  private static final int q0 = 0; //start state
   private static final int q1 = 1;
   private static final int q2 = 2;
   private static final int q3 = 3;
@@ -52,8 +52,7 @@ public class ManWolf {
   /**
    * Makes transition on each char in the given string.
    * 
-   * @param in
-   *          : the string to use as input
+   * @param in : the string to use as input
    */
 
   public void process(String in) {
@@ -72,7 +71,7 @@ public class ManWolf {
         }
         state = delta[state][index]; 
       } catch (ArrayIndexOutOfBoundsException ex) {
-        state = q10; //I think this should stay this way but I need to check how to properly to the subtraction portion above
+        state = q10; 
       }
     }
   }
