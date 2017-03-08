@@ -12,7 +12,13 @@
  */
 
 // TODO: Block comments
-
+/**
+   * ManWolf
+   * 
+   * This class implements a linked list with single 
+   * forward links, and supports dynamic addition 
+   * and deletion of nodes. 
+   */
 public class ManWolf {
   // reused from the book on page 40
   // reusing code from the book from pages 37-42

@@ -13,6 +13,13 @@
 import java.io.*;
 
 //TODO:Block comments
+/**
+ * SinglyLinkedList
+ * 
+ * This class implements a linked list with single 
+ * forward links, and supports dynamic addition 
+ * and deletion of nodes. 
+ */
 public class driverDFA {
   public static void main(String[] args) throws IOException {
     ManWolf d = new ManWolf(); // The dfa created in the ManWolf class
