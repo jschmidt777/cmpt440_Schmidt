@@ -6,26 +6,22 @@
  * due date: March 20, 2017 
  * version: 1.0
  * 
- * This file takes a string from the command line and reports whether or not it
- * represents a solution to the man-wolf-goat-cabbage problem in Chapter 2 of
- * the textbook.
+ * This file defines the class ManWolf which takes a string 
+ * from the command line and reports whether or not it 
+ * represents a solution to the man-wolf-goat-cabbage problem.
  */
 
-// TODO: Block comments
+
 /**
    * ManWolf
    * 
-   * This class implements a linked list with single 
-   * forward links, and supports dynamic addition 
-   * and deletion of nodes. 
+   * This class implements a DFA from the diagram 
+   * on page 11 in textbook "Formal Language A Practical Introduction"
+   * and reuses some of the code from pages 37-42. It determines
+   * whether a string is a solution to the man-wolf-goat-cabbage problem.
    */
 public class ManWolf {
-  // reused from the book on page 40
-  // reusing code from the book from pages 37-42
-  /*
-   * Based on the DFA diagram on page 11 Need these states to account for the
-   * possible inputs, plus an error state
-   */
+  
   private static final int q0 = 0; //start state
   private static final int q1 = 1;
   private static final int q2 = 2;
@@ -38,7 +34,7 @@ public class ManWolf {
   private static final int q9 = 9;
   private static final int q10 = 10;
 
-  private int state = 0; // initialize at zero; this is the start of the dfa
+  private int state = 0; // initialize at zero (the start of the dfa)
 
   private static int[][] delta =
   /*  G    W    C    N */

@@ -9,9 +9,7 @@
  * This file reads from standard input, calls the functions of
  * the ManWolf class, and prints the result to standard output.
  */
-
-import java.io.*;
-
+import java.io.IOException;
 /**
  * driverDFA
  * 
@@ -21,7 +19,7 @@ import java.io.*;
  * the user whether or not the solution is correct or not.
  */
 public class driverDFA {
-  public static void main(String[] args){
+  public static void main(String[] args) throws IOException{
       try{ 
         ManWolf d = new ManWolf(); // The dfa created by the ManWolf class
         String input = args[0]; //This reads an argument from the command line
