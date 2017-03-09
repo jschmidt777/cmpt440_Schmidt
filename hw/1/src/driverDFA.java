@@ -12,36 +12,32 @@
 
 import java.io.*;
 
-//TODO:Block comments
 /**
- * SinglyLinkedList
+ * driverDFA
  * 
- * This class implements a linked list with single 
- * forward links, and supports dynamic addition 
- * and deletion of nodes. 
+ * This class creates an instance of the class ManWolf and 
+ * then reads the argument provided by the user of a possible
+ * solution to the man-wolf-goat-cabbage problem. It then tells
+ * the user whether or not the solution is correct or not.
  */
 public class driverDFA {
-  public static void main(String[] args) throws IOException {
-    ManWolf d = new ManWolf(); // The dfa created in the ManWolf class
-    
-    BufferedReader in = // Standard input for reading the command line
-    new BufferedReader(new InputStreamReader(System.in));
-
-    // Read and echo lines until EOF
-
-    String s = in.readLine();
-    while (s != null) {
-      d.reset();
-      d.process(s);
-      if (d.accepted()) {
-        System.out.println("That is a solution.");
-        System.exit(0);
-      }else{
-        System.out.println("That is not a solution.");
-        System.exit(0);
+  public static void main(String[] args){
+      try{ 
+        ManWolf d = new ManWolf(); // The dfa created by the ManWolf class
+        String input = args[0]; //This reads an argument from the command line
+        while (input != null) {
+            d.reset();
+            d.process(input);
+            if (d.accepted()) {
+              System.out.println("That is a solution.");
+              System.exit(0);
+            }else{
+              System.out.println("That is not a solution.");
+              System.exit(0);
+            }
+        }
+      }catch (ArrayIndexOutOfBoundsException ex){
+        System.out.println("Error: Please provide an argument.");
       }
-      s = in.readLine();
     }
-
-  }
 }
