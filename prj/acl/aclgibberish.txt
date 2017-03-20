@@ -1,0 +1,9 @@
+
+
+
+
+
+
+permit0.0.0.0
+deny any
+fasdbfaslkdegjtgilhtgajsdkf;aksldjfhaslfgaksdf///^%$#@!(&)_%>>,,.<>~~~```PERMIT 1.1.1.1

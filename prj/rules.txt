@@ -1,0 +1,5 @@
+-Start file lines at the first instance of text
+-permit or deny followed by the word 'any' or an ip address x.x.x.x 
+where x = a number between 0 and 255
+-Each line needs to have a separate rule
+	-subject to change
