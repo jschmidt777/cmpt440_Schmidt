@@ -6,20 +6,20 @@
  * due date: March 20, 2017 
  * version: 1.0
  * 
- * This file defines the class ManWolf which takes a string 
+ * This file defines the class ManWolf which takes an argument 
  * from the command line and reports whether or not it 
  * represents a solution to the man-wolf-goat-cabbage problem.
  */
 
 
 /**
-   * ManWolf
-   * 
-   * This class implements a DFA from the diagram 
-   * on page 11 in textbook "Formal Language A Practical Introduction"
-   * and reuses some of the code from pages 37-42. It determines
-   * whether a string is a solution to the man-wolf-goat-cabbage problem.
-   */
+ * ManWolf
+ * 
+ * This class implements the DFA on page 11 
+ * in the textbook "Formal Language A Practical Introduction"
+ * and reuses some of the code from pages 37-42. It determines
+ * whether a string is a solution to the man-wolf-goat-cabbage problem.
+*/
 public class ManWolf {
   
   private static final int q0 = 0; //start state
@@ -60,8 +60,8 @@ public class ManWolf {
   public void process(String in) {
     for (int i = 0; i < in.length(); i++) {
       char c = in.charAt(i);
-      int index = 0; //This represents which letter we get and maps it to the 2D array
-      try {
+      int index = 0; //This represents which letter in the string and maps it to the delta array
+      try{
         if(c == 'g'){
           index = 0;
         }else if (c == 'w'){
@@ -72,7 +72,7 @@ public class ManWolf {
           index = 3;
         }
         state = delta[state][index]; 
-      } catch (ArrayIndexOutOfBoundsException ex) {
+      }catch (ArrayIndexOutOfBoundsException ex) {
         state = q10; 
       }
     }
