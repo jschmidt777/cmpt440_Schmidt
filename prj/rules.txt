@@ -1,10 +1,11 @@
--Start file lines at the first instance of text
--permit or deny followed by the word 'any' or an ip address x.x.x.x 
+Please read the following rules that the access control list (ACL) needs to follow in order to be valid:
+- The start of lines in the ACL is at the first instance of text, and is indexed at 0
+- There are two types of statements: permit or deny 
+	-These can be followed by the word 'any' or an ip address x.x.x.x (x = a number between 0 and 255)
 	-currently only implemented for 192.168.1.x addresses
 	-wildcards not implemented
-where x = a number between 0 and 255
 -Each line needs to have a separate rule
--deny by default
-	-If there are only deny statements, then all other ip addresses will be permitted
-	-If there is a mix of deny and permit, then only those addresses will be denied or permitted
--When the ACL is run, the permitted addresses will be allowed, followed by the
+-deny is by default
+-When the ACL is run, the permitted addresses will be allowed, followed by the denied addresses
+	-This is because the ACL is allowing the permitted addresses DFA first so there is no interuption of network communication
+	-This means there are essentially two DFA: one for permitted addresses and one for denied addresses(the later is ran second)

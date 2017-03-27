@@ -9,3 +9,7 @@ print(lines)
 print("Any repeat statements were removed.")
 print(permits)
 print(denys)
+print("DFA being created for permit statements.")
+# show the nodes for this dfa
+print("DFA being created for deny statements.")
+# show the nodes for this dfa

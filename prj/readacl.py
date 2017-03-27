@@ -8,7 +8,7 @@
 import sys
 import re
 # TODO: Accept arguments
-# TODO: Ignore rep
+
 # s for sigma or the alphabet allowed
 # (permit me this one line being too long please)
 s = r"(?i)^((permit|deny)( *)((any)|(\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b))$)"
@@ -39,8 +39,9 @@ if invalidinput() is not None:
              " of the ACL. Invalid input!")
 else:  # create two arrays for the creation of dfas
     permits = [x for x in lines if re.match(permit, x)]
-    permits = list(set(permits))
+    permits = list(set(permits))  # ensures no repeat statements
     denys = [x for x in lines if re.match(deny, x)]
-    denys = list(set(denys))
+    denys = list(set(denys))  # ensures no repeat statements
+    # TODO: More checking for these arrays (ie is deny length 0?)
 # depending on the first line, if it's permit,
 # check for deny at end and add if needed
