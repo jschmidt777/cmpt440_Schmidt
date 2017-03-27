@@ -8,7 +8,7 @@
 import sys
 import re
 # TODO: Accept arguments
-
+# TODO: Ignore rep
 # s for sigma or the alphabet allowed
 # (permit me this one line being too long please)
 s = r"(?i)^((permit|deny)( *)((any)|(\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b))$)"
@@ -16,7 +16,7 @@ s = r"(?i)^((permit|deny)( *)((any)|(\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(
 permit = r"(?i)(permit)"
 deny = r"(?i)(deny)"
 
-with open('acl/acl0.txt') as acl:
+with open('acl/aclrepeats.txt') as acl:
     lines = acl.readlines()
 lines = [x.strip('\n') for x in lines]
 lines = list(filter(None, lines))  # gets rid of empty strings
@@ -39,6 +39,8 @@ if invalidinput() is not None:
              " of the ACL. Invalid input!")
 else:  # create two arrays for the creation of dfas
     permits = [x for x in lines if re.match(permit, x)]
+    permits = list(set(permits))
     denys = [x for x in lines if re.match(deny, x)]
+    denys = list(set(denys))
 # depending on the first line, if it's permit,
 # check for deny at end and add if needed

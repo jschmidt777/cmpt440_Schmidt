@@ -6,5 +6,6 @@
 # print(newNode1)
 from readacl import lines, permits, denys
 print(lines)
+print("Any repeat statements were removed.")
 print(permits)
 print(denys)
