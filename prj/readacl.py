@@ -16,7 +16,7 @@ s = r"(?i)^((permit|deny)( *)((any)|(\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(
 permit = r"(?i)(permit)"
 deny = r"(?i)(deny)"
 
-with open('acl/aclrepeats.txt') as acl:
+with open('acl/aclpermitany.txt') as acl:
     lines = acl.readlines()
 lines = [x.strip('\n') for x in lines]
 lines = list(filter(None, lines))  # gets rid of empty strings
@@ -45,3 +45,10 @@ else:  # create two arrays for the creation of dfas
     # TODO: More checking for these arrays (ie is deny length 0?)
 # depending on the first line, if it's permit,
 # check for deny at end and add if needed
+
+# Removes  the word 'permit' so statments can be processed into a dfa
+for i in range(len(permits)):
+    permits[i] = permits[i].split(' ', 1)[1]
+# Removes  the word 'permit' so statments can be processed into a dfa
+for i in range(len(denys)):
+    denys[i] = denys[i].split(' ', 1)[1]
