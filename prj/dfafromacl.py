@@ -4,7 +4,9 @@ from node import Node
 # DFA which matches 192.168.1.x addresses or word 'any' based on acl
 # This is based off of the diagram in my report for this project
 # (reference as needed)
-# Takes in the list of either permit or deny statments 
+# Takes in the list of either permit or deny statments
+
+
 def createdfa(statements):
     q0 = Node(acceptedState=False, nodeId=None)  # The start state
     stateptr = q0
@@ -13,18 +15,18 @@ def createdfa(statements):
         if statements[i] == 'any':
             # Only create this state; we're accepting everything
             foundany = True
-            q0.acceptedState=True
+            q0.acceptedState = True
             break
     if not foundany:
         for i in range(len(statements)):
-            stateptr = q0 # Reset for recursion
+            stateptr = q0   # Reset for recursion
             octets = statements[i].split('.')
             print("Looking at octets---", octets)
             for j in range(len(octets)):
                 print("Looking at octet", octets[j])
                 print(stateptr)
                 if len(stateptr.transitionOn) == 0:
-                    print("Length is 0")        
+                    print("Length is 0")
                     newNode = Node(acceptedState=False, nodeId=octets[j])
                     print('stateptr children', stateptr.transitionOn)
                     print('newNode children', newNode.transitionOn)
@@ -34,10 +36,12 @@ def createdfa(statements):
                     stateptr = newNode
                     print('stateptr children', stateptr.transitionOn)
                     print('newNode children', newNode.transitionOn)
-            else:
-                    foundnode = False # found a node that represents the octet we're looking at
+                else:
+                    foundnode = False
+                    # found a node that represents the octet we're looking at
                     for k in range(len(stateptr.transitionOn)):
-                        print("Looking at node", stateptr.transitionOn[k].nodeId)
+                        print("Looking at node",
+                              stateptr.transitionOn[k].nodeId)
                         if stateptr.transitionOn[k].nodeId == octets[j]:
                             foundnode = True
                             stateptr = stateptr.transitionOn[k]
