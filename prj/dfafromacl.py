@@ -23,7 +23,7 @@ def createdfa(statements):
             octets = statements[i].split('.')
             print("Looking at octets---", octets)
             for j in range(len(octets)):
-                print("Looking at octet", octets[j])
+                print("Looking at octet", octets[j], j)
                 print(stateptr)
                 if len(stateptr.transitionOn) == 0:
                     print("Length is 0")
@@ -46,8 +46,19 @@ def createdfa(statements):
                             foundnode = True
                             stateptr = stateptr.transitionOn[k]
                             break
+# If we don't need to create a new node here it must be the last octet so
+# make it an accepting state...we're at the last octet so make node accepting
                     if not foundnode:
-                        newNode = Node(acceptedState=False, nodeId=octets[j])
-                        stateptr.transitionOn.append(newNode)
-                        stateptr = newNode
+                        if j == 3:
+                            newNode = Node(acceptedState=True,
+                                           nodeId=octets[j])
+                            stateptr.transitionOn.append(newNode)
+                            stateptr = newNode
+                            print("Accepted state created", stateptr)
+                        else:
+                            print("Non-Accepted state created")
+                            newNode = Node(acceptedState=False,
+                                           nodeId=octets[j])
+                            stateptr.transitionOn.append(newNode)
+                            stateptr = newNode
     return q0

@@ -16,7 +16,7 @@ s = r"(?i)^((permit|deny)( *)((any)|(\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(
 permit = r"(?i)(permit)"
 deny = r"(?i)(deny)"
 
-with open('acl/acl0.txt') as acl:
+with open('acl/aclpermits.txt') as acl:
     lines = acl.readlines()
 lines = [x.strip('\n') for x in lines]
 lines = list(filter(None, lines))  # gets rid of empty strings
@@ -37,6 +37,8 @@ def invalidinput():
 if invalidinput() is not None:
     sys.exit("Error on line " + str(invalidinput()) +
              " of the ACL. Invalid input!")
+# The ensuring of no repeat statements changes the order the permits/denys
+# Which is weird but shouldn't be an issue
 else:  # create two arrays for the creation of dfas
     permits = [x for x in lines if re.match(permit, x)]
     permits = list(set(permits))  # ensures no repeat statements
