@@ -1,1 +1,2 @@
+permit any
 deny any

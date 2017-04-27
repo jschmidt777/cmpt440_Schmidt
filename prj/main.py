@@ -7,6 +7,7 @@
 from readacl import lines, permits, denys
 from dfafromacl import createdfa
 from transition import transition
+
 print(lines)
 print("Any repeat statements were removed.")
 print(permits)
@@ -46,9 +47,13 @@ with open('streams/stream0.txt') as addresses:
 
 def permitthendeny():
 	printdfa(permitdfa)
-	print("Permitted addresses:", transition(permitdfa,stream))
+	permitaddresses = transition(permitdfa,stream)
+	print("Permitted addresses:", permitaddresses)
 	printdfa(denydfa)
-	print("Denied addresses:", transition(denydfa,stream))
+	denyaddresses = transition(denydfa,stream)
+	checkdenys = list(set(denyaddresses)^set(permitaddresses))
+    # ensures no unecessary addresses in the deny list
+	print("Denied addresses:", checkdenys)
 
 permitthendeny()
 # print(permitdfa.transitionOn)
