@@ -6,6 +6,7 @@
 # print(newNode1)
 from readacl import lines, permits, denys
 from dfafromacl import createdfa
+from transition import transition
 print(lines)
 print("Any repeat statements were removed.")
 print(permits)
@@ -39,9 +40,15 @@ def printdfa(dfa, lvl=0):
             for i in range(len(dfa.transitionOn)):
                 printdfa(dfa.transitionOn[i], 0)
 
+with open('streams/stream0.txt') as addresses:
+	stream = addresses.readlines()
+	stream = [x.strip('\n') for x in stream]
+
 def permitthendeny():
 	printdfa(permitdfa)
+	print("Permitted addresses:", transition(permitdfa,stream))
 	printdfa(denydfa)
+	print("Denied addresses:", transition(denydfa,stream))
 
 permitthendeny()
 # print(permitdfa.transitionOn)

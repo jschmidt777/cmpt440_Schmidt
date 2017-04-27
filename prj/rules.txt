@@ -12,3 +12,5 @@ Other Notes:
 -When the ACL is run, the permitted addresses will be allowed, followed by the denied addresses
 	-This is because the ACL is allowing the permitted addresses first so there is no interuption of network communication
 	-This means there are essentially two DFA: one for permitted addresses and one for denied addresses(the later is ran second)
+-A simulated network stream of source IP addresses will be read in to show that the DFA enforces the specified ACL
+	-Examples are found in streams/ and should be used to see the DFA work
