@@ -19,14 +19,18 @@ def transition(dfa, stream):
                 print("Looking at octet", octets[j], j)
                 print(stateptr)
                 for k in range(len(stateptr.transitionOn)):
-                        print("Looking at node ",
-                        stateptr.transitionOn[k].nodeId, " for processing")
-                        if stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == False:
-                            # We matched on our dfa so go to the next state
-                            stateptr = stateptr.transitionOn[k]
-                        elif stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == True:
-                            arr.append(stream[i])
-                            break
+                    print("Looking at node ",
+                    stateptr.transitionOn[k].nodeId, " for processing")
+                    if stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == False:
+                        # We matched on our dfa so go to the next state
+                        print("Here")
+                        print(stateptr)
+                        print(stateptr.acceptedState)
+                        stateptr = stateptr.transitionOn[k]
+                        if stateptr.acceptedState == True:
+                    elif stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == True:
+                        arr.append(stream[i])
+                        break
 
 #                 if len(stateptr.transitionOn) == 0:
 #                     print("Length is 0")
