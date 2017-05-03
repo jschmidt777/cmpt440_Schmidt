@@ -10,15 +10,24 @@ def transition(dfa, stream):
         # which means we must be dealing with a dfa which permits/denys any
         for i in range(len(stream)):
             arr.append(stream[i])
-        return arr
-#     else:
-#         for i in range(len(stream)):
-#             stateptr = dfa # Reset for recursion
-#             octets = stream[i].split('.')
-#             print("Looking at octets---", octets)
-#             for j in range(len(octets)):
-#                 print("Looking at octet", octets[j], j)
-#                 print(stateptr)
+    else:
+        for i in range(len(stream)):
+            stateptr = dfa # Reset for recursion
+            octets = stream[i].split('.')
+            print("Looking at octets---", octets)
+            for j in range(len(octets)):
+                print("Looking at octet", octets[j], j)
+                print(stateptr)
+                for k in range(len(stateptr.transitionOn)):
+                        print("Looking at node ",
+                        stateptr.transitionOn[k].nodeId, " for processing")
+                        if stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == False:
+                            # We matched on our dfa so go to the next state
+                            stateptr = stateptr.transitionOn[k]
+                        elif stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == True:
+                            arr.append(stream[i])
+                            break
+
 #                 if len(stateptr.transitionOn) == 0:
 #                     print("Length is 0")
 #                     newNode = Node(acceptedState=False, nodeId=octets[j])
@@ -55,4 +64,4 @@ def transition(dfa, stream):
 #                                            nodeId=octets[j])
 #                             stateptr.transitionOn.append(newNode)
 #                             stateptr = newNode
-#     return q0
+    return arr

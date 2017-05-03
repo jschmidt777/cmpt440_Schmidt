@@ -13,10 +13,7 @@ print("Any repeat statements were removed.")
 print(permits)
 print(len(permits))
 print(denys)
-print("DFA being created for permit statements.")
-# show the nodes for this dfa
-print("DFA being created for deny statements.")
-# show the nodes for this dfa
+
 permitdfa = createdfa(permits)
 denydfa = createdfa(denys)
 
@@ -41,14 +38,19 @@ def printdfa(dfa, lvl=0):
             for i in range(len(dfa.transitionOn)):
                 printdfa(dfa.transitionOn[i], 0)
 
+
 with open('streams/stream0.txt') as addresses:
 	stream = addresses.readlines()
 	stream = [x.strip('\n') for x in stream]
 
 def permitthendeny():
+	print("DFA being created for permit statements.")
+	# show the nodes for this dfa
 	printdfa(permitdfa)
 	permitaddresses = transition(permitdfa,stream)
 	print("Permitted addresses:", permitaddresses)
+	print("DFA being created for deny statements.")
+	# show the nodes for this dfa
 	printdfa(denydfa)
 	denyaddresses = transition(denydfa,stream)
 	checkdenys = list(set(denyaddresses)^set(permitaddresses))
