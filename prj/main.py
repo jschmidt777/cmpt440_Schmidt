@@ -56,7 +56,7 @@ def printdfa(dfa, lvl=0):
                 printdfa(dfa.transitionOn[i], 0)
 
 
-with open('streams/stream0.txt') as addresses:
+with open('streams/stream1.txt') as addresses:
 	stream = addresses.readlines()
 	stream = [x.strip('\n') for x in stream]
 

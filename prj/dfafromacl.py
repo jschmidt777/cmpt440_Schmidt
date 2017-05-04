@@ -7,16 +7,10 @@
 
 # This file converts the acl into a dfa,
 # taking in the list of either permit or deny statments.
-# It shows how an ACL is converted to a DFA using a graph/tree like data structure
-# and then enforeced on an ip address stream.
-# It does with the following process:
-# -Take an arugment for the ACL wished to be enforced
-# -Converts the ACL to DFA
-# -Takes an arugment for the source ip address stream 
-# -Outputs the ip addressess permitted or denied based on the ACL
+# It constructs the dfa with the Node class in node.py.
 # It will output this processes verbosely to show it's validity.
-# It nullifies circular dependencies when loaded in packages
-# and is ran in the terminal using python 3.5.0.
+# Params: The statements (either permit or deny) it will use to create a dfa
+# Returns: The start state of the dfa
 
 
 from node import Node

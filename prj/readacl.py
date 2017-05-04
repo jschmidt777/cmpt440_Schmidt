@@ -27,7 +27,8 @@ s = r"(?i)^((permit|deny)( *)((any)|(\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(
 permit = r"(?i)(permit)"
 deny = r"(?i)(deny)"
 
-with open('acl/aclpermitany.txt') as acl:
+inputacl = sys.argv[1]
+with open('acl/'+inputacl+'.txt') as acl:
     lines = acl.readlines()
 lines = [x.strip('\n') for x in lines]
 lines = list(filter(None, lines))  # gets rid of empty strings
