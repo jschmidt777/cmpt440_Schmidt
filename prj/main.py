@@ -53,9 +53,9 @@ def permitthendeny():
 	# show the nodes for this dfa
 	printdfa(denydfa)
 	denyaddresses = transition(denydfa,stream)
-	checkdenys = list(set(denyaddresses)^set(permitaddresses))
+	#checkdenys = list(set(denyaddresses)^set(permitaddresses))
     # ensures no unecessary addresses in the deny list
-	print("Denied addresses:", checkdenys)
+	print("Denied addresses:", denyaddresses)
 
 permitthendeny()
 # print(permitdfa.transitionOn)
