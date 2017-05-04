@@ -1,4 +1,15 @@
-
+# file: transition.py
+# author: Joseph Schmidt
+# course: CMPT 440
+# assignment: semester project
+# due date: 05MAY2017
+# version: 1.0
+#
+# This file defines the method which 
+# does the actual enforcement of the created dfa on a
+# ip source stream specified by the user.
+# Params: The dfa to enforce and the stream of addresses
+# Returns: The list of addresses accepted by the dfa
 
 def transition(dfa, stream):
     arr = []

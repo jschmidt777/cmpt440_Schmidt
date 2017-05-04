@@ -1,9 +1,22 @@
-# Nullifies circular dependencies when loaded in packages.
-# from node import Node
-# newNode = Node()
-# print(newNode)
-# newNode1 = Node(acceptedState=True, nodeId=5)
-# print(newNode1)
+# file: main.py
+# author: Joseph Schmidt
+# course: CMPT 440
+# assignment: semester project
+# due date: 05MAY2017
+# version: 1.0
+
+# This file is the main driver for this application.
+# It shows how an ACL is converted to a DFA using a graph/tree like data structure
+# and then enforeced on an ip address stream.
+# It does with the following process:
+# -Take an arugment for the ACL wished to be enforced
+# -Converts the ACL to DFA
+# -Takes an arugment for the source ip address stream 
+# -Outputs the ip addressess permitted or denied based on the ACL
+# It will output this processes verbosely to show it's validity.
+# It nullifies circular dependencies when loaded in packages
+# and is ran in the terminal using python 3.5.0.
+
 from readacl import lines, permits, denys
 from dfafromacl import createdfa
 from transition import transition
@@ -18,6 +31,10 @@ permitdfa = createdfa(permits)
 denydfa = createdfa(denys)
 
 
+# This allows the dfas created above to be printed to the output terminal
+# Params: the dfa created
+# Returns: a printed representation of the dfa with a tree like fashion
+
 def printdfa(dfa, lvl=0):
     if dfa.nodeId is not None:
         stringtoprint = ""
@@ -26,14 +43,14 @@ def printdfa(dfa, lvl=0):
             stringtoprint += "-"
         print(stringtoprint + dfa.nodeId)
         if len(dfa.transitionOn) > 0:  # If there are childern to the node
-            # print("Found children ", dfa )
-            # print("Children ", dfa.transitionOn)
             for i in range(len(dfa.transitionOn)):
-                # print("Looking at node: ", dfa.transitionOn[i])
                 printdfa(dfa.transitionOn[i], lvl + 1)
     else:
         if len(dfa.transitionOn) == 0 and dfa.acceptedState == True:
-            print("All addresses permitted/denied")  #Depends on what is printed (know that permit is first, then deny)
+            if dfa == "permitdfa":
+                print("All addresses permitted") 
+            elif dfa == "denydfa":
+                print("All addresses denied")
         else:
             for i in range(len(dfa.transitionOn)):
                 printdfa(dfa.transitionOn[i], 0)
@@ -42,6 +59,11 @@ def printdfa(dfa, lvl=0):
 with open('streams/stream0.txt') as addresses:
 	stream = addresses.readlines()
 	stream = [x.strip('\n') for x in stream]
+
+
+# This enforces the order of what statements are processed
+# Params: N/A
+# Returns: The result of enforcing the ACL on the inputted stream of ip addresses
 
 def permitthendeny():
 	print("DFA created for permit statements.")
@@ -58,4 +80,4 @@ def permitthendeny():
 	print("Denied addresses:", denyaddresses)
 
 permitthendeny()
-# print(permitdfa.transitionOn)
+

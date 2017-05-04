@@ -1,7 +1,25 @@
-from node import Node
-# TODO: Verbose mode for running pcap file src ips against dfa(s)
-# Takes in the list of either permit or deny statments
+# file: dfafromacl.py
+# author: Joseph Schmidt
+# course: CMPT 440
+# assignment: semester project
+# due date: 05MAY2017
+# version: 1.0
 
+# This file converts the acl into a dfa,
+# taking in the list of either permit or deny statments.
+# It shows how an ACL is converted to a DFA using a graph/tree like data structure
+# and then enforeced on an ip address stream.
+# It does with the following process:
+# -Take an arugment for the ACL wished to be enforced
+# -Converts the ACL to DFA
+# -Takes an arugment for the source ip address stream 
+# -Outputs the ip addressess permitted or denied based on the ACL
+# It will output this processes verbosely to show it's validity.
+# It nullifies circular dependencies when loaded in packages
+# and is ran in the terminal using python 3.5.0.
+
+
+from node import Node
 
 def createdfa(statements):
     q0 = Node(acceptedState=False, nodeId=None)  # The start state
@@ -49,8 +67,8 @@ def createdfa(statements):
                             foundnode = True
                             stateptr = stateptr.transitionOn[k]
                             break
-# If we don't need to create a new node here it must be the last octet so
-# make it an accepting state...we're at the last octet so make node accepting
+                # If we don't need to create a new node here it must be the last octet so
+                # make it an accepting state...we're at the last octet so make node accepting
                     if not foundnode:
                         if j == 3:
                             newNode = Node(acceptedState=True,
