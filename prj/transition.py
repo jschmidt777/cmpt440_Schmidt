@@ -21,16 +21,30 @@ def transition(dfa, stream):
                 for k in range(len(stateptr.transitionOn)):
                     print("Looking at node ",
                     stateptr.transitionOn[k].nodeId, " for processing")
-                    if stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == False:
-                        # We matched on our dfa so go to the next state
-                        print("Here")
-                        print(stateptr)
-                        print(stateptr.acceptedState)
+                    if stateptr.transitionOn[k].nodeId == octets[j]:
+                        foundnode = True
                         stateptr = stateptr.transitionOn[k]
-                        if stateptr.acceptedState == True:
-                    elif stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == True:
-                        arr.append(stream[i])
+                        print(stateptr.acceptedState)
+                        if j == 3 and stateptr.acceptedState == True:
+                            print("Added "+ stream[i]+ " to output list")
+                            arr.append(stream[i])
                         break
+# If we don't need to create a new node here it must be the last octet so
+# make it an accepting state...we're at the last octet so make node accepting
+                    # if stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == False:
+                    #     # We matched on our dfa so go to the next state
+                    #     print("Here")
+                    #     print(stateptr)
+                    #     print(stateptr.acceptedState)
+                    #     stateptr = stateptr.transitionOn[k]
+                    #     if stateptr.acceptedState == True:
+                    #          print("Added"+ stream[i] +" to output list")
+                    #          arr.append(stream[i])
+                    #          break
+                    # elif stateptr.transitionOn[k].nodeId == octets[j] and stateptr.acceptedState == True:
+                    #     print("Added"+ stream[i] +"to output list --------")
+                    #     arr.append(stream[i])
+                    #     break
 
 #                 if len(stateptr.transitionOn) == 0:
 #                     print("Length is 0")

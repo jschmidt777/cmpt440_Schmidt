@@ -44,12 +44,12 @@ with open('streams/stream0.txt') as addresses:
 	stream = [x.strip('\n') for x in stream]
 
 def permitthendeny():
-	print("DFA being created for permit statements.")
+	print("DFA created for permit statements.")
 	# show the nodes for this dfa
 	printdfa(permitdfa)
 	permitaddresses = transition(permitdfa,stream)
 	print("Permitted addresses:", permitaddresses)
-	print("DFA being created for deny statements.")
+	print("DFA created for deny statements.")
 	# show the nodes for this dfa
 	printdfa(denydfa)
 	denyaddresses = transition(denydfa,stream)

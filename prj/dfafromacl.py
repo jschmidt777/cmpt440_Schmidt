@@ -1,9 +1,5 @@
 from node import Node
 # TODO: Verbose mode for running pcap file src ips against dfa(s)
-# from automata.fa.dfa import DFA
-# DFA which matches 192.168.1.x addresses or word 'any' based on acl
-# This is based off of the diagram in my report for this project
-# (reference as needed)
 # Takes in the list of either permit or deny statments
 
 
@@ -26,16 +22,23 @@ def createdfa(statements):
                 print("Looking at octet", octets[j], j)
                 print(stateptr)
                 if len(stateptr.transitionOn) == 0:
-                    print("Length is 0")
-                    newNode = Node(acceptedState=False, nodeId=octets[j])
-                    print('stateptr children', stateptr.transitionOn)
-                    print('newNode children', newNode.transitionOn)
-                    stateptr.transitionOn.append(newNode)
-                    print('newNode children', newNode.transitionOn)
-                    print('stateptr children', stateptr.transitionOn)
-                    stateptr = newNode
-                    print('stateptr children', stateptr.transitionOn)
-                    print('newNode children', newNode.transitionOn)
+                    if j == 3:
+                        newNode = Node(acceptedState=True,
+                                       nodeId=octets[j])
+                        stateptr.transitionOn.append(newNode)
+                        stateptr = newNode
+                        print("Accepted state created", stateptr)
+                    else:
+                        print("Length is 0")
+                        newNode = Node(acceptedState=False, nodeId=octets[j])
+                        print('stateptr children', stateptr.transitionOn)
+                        print('newNode children', newNode.transitionOn)
+                        stateptr.transitionOn.append(newNode)
+                        print('newNode children', newNode.transitionOn)
+                        print('stateptr children', stateptr.transitionOn)
+                        stateptr = newNode
+                        print('stateptr children', stateptr.transitionOn)
+                        print('newNode children', newNode.transitionOn)
                 else:
                     foundnode = False
                     # found a node that represents the octet we're looking at
