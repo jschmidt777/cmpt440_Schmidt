@@ -20,6 +20,7 @@
 from readacl import lines, permits, denys
 from dfafromacl import createdfa
 from transition import transition
+import sys
 
 print(lines)
 print("Any repeat statements were removed.")
@@ -55,8 +56,8 @@ def printdfa(dfa, lvl=0):
             for i in range(len(dfa.transitionOn)):
                 printdfa(dfa.transitionOn[i], 0)
 
-
-with open('streams/stream1.txt') as addresses:
+inputstream = sys.argv[2]
+with open('streams/'+inputstream+'.txt') as addresses:
 	stream = addresses.readlines()
 	stream = [x.strip('\n') for x in stream]
 
