@@ -18,7 +18,7 @@
 
 import sys
 import re
-# TODO: Accept arguments
+
 
 # s for sigma or the alphabet allowed
 # (permit me this one line being too long please)
