@@ -7,8 +7,8 @@
 
 # This file is the main driver for this application.
 # It shows how an ACL is converted to a DFA using a graph/tree like data structure
-# and then enforeced on an ip address stream.
-# It does with the following process:
+# and then enforced on an ip address stream.
+# It does this with the following process:
 # -Take an arugment for the ACL wished to be enforced
 # -Converts the ACL to DFA
 # -Takes an arugment for the source ip address stream 

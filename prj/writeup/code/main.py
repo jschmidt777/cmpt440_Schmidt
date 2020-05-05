@@ -14,7 +14,7 @@
 # -Takes an arugment for the source ip address stream 
 # -Outputs the ip addressess permitted or denied based on the ACL
 # It will output this processes verbosely to show it's validity.
-# It nullifies circular dependencies when loaded in packages
+# It nullifies circular dependesudncies when loaded in packages
 # and is ran in the terminal using python 3.5.0.
 
 from readacl import lines, permits, denys
